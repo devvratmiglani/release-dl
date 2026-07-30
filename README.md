@@ -2,7 +2,7 @@
 # release-dl
 
 An interactive cross-platform github release downloader made in pwsh for convenience
-
+![Demo usage of release-dl](rel-demo.gif)
 
 ## Usage
 In powershell or pwsh
