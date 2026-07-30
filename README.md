@@ -34,15 +34,15 @@ sudo apt-get install -y powershell
 ```
 Then run:
 ```bash
-  mkdir -p "$HOME/.local/bin" && curl -fsSL "https://raw.githubusercontent.com/devvratmiglani/release-dl/refs/heads/main/rel" -o "$HOME/.local/bin/rel" && chmod +x "$HOME/.local/bin/rel"
+  mkdir -p "$HOME/.local/bin" && curl -fsSL "https://raw.githubusercontent.com/devvratmiglani/release-dl/refs/heads/main/src/rel" -o "$HOME/.local/bin/rel" && chmod +x "$HOME/.local/bin/rel"
 ```
 
 #### Windows:
 In powershell:
 
-```pwsh
+```bash
 $bin = "$env:LOCALAPPDATA\Microsoft\WindowsApps"
-Invoke-WebRequest "https://raw.githubusercontent.com/devvratmiglani/release-dl/refs/heads/main/rel" -OutFile "$bin\rel.ps1"
+Invoke-WebRequest "https://raw.githubusercontent.com/devvratmiglani/release-dl/refs/heads/main/src/rel" -OutFile "$bin\rel.ps1"
 ```
 If `$env:LOCALAPPDATA\Microsoft\WindowsApps` is not in environment paths, replace `$bin` with a directory in paths or add it to paths.
 
