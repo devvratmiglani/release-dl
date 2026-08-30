@@ -286,8 +286,34 @@ function Get-GitHubReleases {
         [string]$FullName
     )
 
-    $url = "https://api.github.com/repos/$FullName/releases?per_page=50"
-    return @(Invoke-GitHubGet -Url $url)
+    $allReleases = @()
+    $page = 1
+    $perPage = 100
+
+    while ($true) {
+        Write-Host "Fetching releases page $page..." -ForegroundColor DarkGray
+
+        $url = "https://api.github.com/repos/$FullName/releases?per_page=$perPage&page=$page"
+
+        $result = @(Invoke-GitHubGet -Url $url)
+
+        if ($result.Count -eq 0) {
+            break
+        }
+
+        $allReleases += $result
+
+        # If fewer than 100 were returned, this was the final page
+        if ($result.Count -lt $perPage) {
+            break
+        }
+
+        $page++
+    }
+
+    Write-Host "Fetched $($allReleases.Count) releases." -ForegroundColor Green
+
+    return $allReleases
 }
 
 function Get-ReleaseDownloadOptions {
